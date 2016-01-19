@@ -1,4 +1,4 @@
-package Client;
+п»їpackage Client;
 
 
 import java.io.BufferedReader;
@@ -37,23 +37,23 @@ public class ClientChat extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		
-		primaryStage.setTitle("Онлайн чат");
+		primaryStage.setTitle("РћРЅР»Р°Р№РЅ С‡Р°С‚");
 		windowChat = new TextArea();
 		adressServer = new TextField();
 	    portNumber = new TextField();
 		nameUser = new TextField();
 		message = new TextField();
-		Button sendMessages = new Button("Отправить сообщение");
-		Button connect = new Button("Подключиться");
+		Button sendMessages = new Button("РћС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ");
+		Button connect = new Button("РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ");
 		GridPane root = new GridPane();
 		root.setVgap(5);
 		root.setHgap(5);
-		root.add(new Label("Настройки соединения"), 1, 0);
-		root.add(new Label("Адрес сервера:"), 1, 1);
+		root.add(new Label("РќР°СЃС‚СЂРѕР№РєРё СЃРѕРµРґРёРЅРµРЅРёСЏ"), 1, 0);
+		root.add(new Label("РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°:"), 1, 1);
 		root.add(adressServer, 1, 2);
-		root.add(new Label("Порт:"), 1, 3);
+		root.add(new Label("РџРѕСЂС‚:"), 1, 3);
 		root.add(portNumber, 1, 4);
-		root.add(new Label("Имя пользователя:"), 1, 5);
+		root.add(new Label("РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:"), 1, 5);
 		root.add(nameUser, 1, 6);
 		root.add(connect, 1, 7);
 		root.add(windowChat, 0, 0, 1, 9);
@@ -63,20 +63,20 @@ public class ClientChat extends Application {
 		sendMessages.setOnAction(e->{
 			if (isConnect){
 			sendMessages(getTime()+" "+nameUser.getText()+": "+message.getText());
-			} else {errorMsg("Ошибка подключения","Попробуйте подключиться заново");}
+			} else {errorMsg("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ","РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Р·Р°РЅРѕРІРѕ");}
 			});
 		
 		connect.setOnAction(e -> {
 			connection();
 			if (isConnect){
 				new Thread(new writeMessages()).start();
-			} else {errorMsg("Ошибка подключения","Попробуйте подключиться заново");}
+			} else {errorMsg("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ","РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Р·Р°РЅРѕРІРѕ");}
 		});
 		
 		primaryStage.setScene(new Scene(root));
 	
 		primaryStage.setOnHiding(e->{
-			windowChat.appendText(getTime()+" Пользователь "+nameUser.getText()+" отключился \n");
+			windowChat.appendText(getTime()+" РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ "+nameUser.getText()+" РѕС‚РєР»СЋС‡РёР»СЃСЏ \n");
 			//closeConnection();
 			System.exit(0);
 		});
@@ -92,14 +92,14 @@ public class ClientChat extends Application {
 	void connection(){
 		try {
 			if (nameUser.getText().isEmpty()||adressServer.getText().isEmpty()||portNumber.getText().isEmpty()){
-				errorMsg("Ошибка данных", "Вы ввели не все данные, попробуйте ещё раз");
+				errorMsg("РћС€РёР±РєР° РґР°РЅРЅС‹С…", "Р’С‹ РІРІРµР»Рё РЅРµ РІСЃРµ РґР°РЅРЅС‹Рµ, РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·");
 				isConnect=false;
 			} else {
 			socket = new Socket(adressServer.getText(), Integer.parseInt(portNumber.getText()));
 			socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 			socketWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 			isConnect=true;
-			sendMessages(getTime()+" Пользователь "+nameUser.getText()+" подключился");
+			sendMessages(getTime()+" РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ "+nameUser.getText()+" РїРѕРґРєР»СЋС‡РёР»СЃСЏ");
 			nameUser.setEditable(false); adressServer.setEditable(false); portNumber.setEditable(false);
 			}
 		} catch (NumberFormatException | IOException e) {
@@ -110,7 +110,7 @@ public class ClientChat extends Application {
 	
 	void errorMsg(String header, String context){
 		Alert error = new Alert(AlertType.ERROR);
-		error.setTitle("Ошибка");
+		error.setTitle("РћС€РёР±РєР°");
 		error.setHeaderText(header);
 		error.setContentText(context);
 		error.show();
@@ -136,7 +136,7 @@ public class ClientChat extends Application {
 	public synchronized void closeConnection(){
 		if (!socket.isClosed()){
 			try {
-				windowChat.appendText(getTime()+" Пользователь "+nameUser.getText()+" отключился \n");
+				windowChat.appendText(getTime()+" РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ "+nameUser.getText()+" РѕС‚РєР»СЋС‡РёР»СЃСЏ \n");
 				socket.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

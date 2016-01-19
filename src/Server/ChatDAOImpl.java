@@ -1,4 +1,4 @@
-package Server;
+п»їpackage Server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,11 +12,11 @@ public class ChatDAOImpl implements ChatDAO {
 		Connection conn=null;
 		try {
 			conn = DriverManager.getConnection("urlBD", "login", "password");
-			System.out.println("Подключение к БД произошло успешно");
+			System.out.println("РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р” РїСЂРѕРёР·РѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("При подключении к БД произошла ошибка \nError: "+e.getMessage());
+			System.out.println("РџСЂРё РїРѕРґРєР»СЋС‡РµРЅРёРё Рє Р‘Р” РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° \nError: "+e.getMessage());
 		}
 		return conn;
 	}
@@ -30,15 +30,15 @@ public class ChatDAOImpl implements ChatDAO {
 				stmt.setString(2, mc.getMessage());
 				stmt.setString(3, mc.getDate());
 				stmt.executeUpdate();
-				System.out.println("Запись успешно вставлена в базу данных");
+				System.out.println("Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РІСЃС‚Р°РІР»РµРЅР° РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…");
 			}catch (SQLException e) {
 				// TODO: handle exception
-				System.out.println("Произошла ошибка при вставке данных "+ e.getMessage());
+				System.out.println("РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РІСЃС‚Р°РІРєРµ РґР°РЅРЅС‹С… "+ e.getMessage());
 			}
 
 		}catch (SQLException e) {
 			// TODO: handle exception
-			System.out.println("Произошла ошибка при вставке данных "+ e.getMessage());
+			System.out.println("РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РІСЃС‚Р°РІРєРµ РґР°РЅРЅС‹С… "+ e.getMessage());
 		}
 		
 	}

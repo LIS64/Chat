@@ -1,4 +1,4 @@
-package Server;
+п»їpackage Server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -35,9 +35,9 @@ public class ChatServer implements Runnable {
 			ssc.socket().bind(new InetSocketAddress(port));
 			selector = Selector.open();
 			ssc.register(selector, SelectionKey.OP_ACCEPT);
-			System.out.println("Сервер чата запущен на порту: "+port);
+			System.out.println("РЎРµСЂРІРµСЂ С‡Р°С‚Р° Р·Р°РїСѓС‰РµРЅ РЅР° РїРѕСЂС‚Сѓ: "+port);
 		} catch (IOException e) {
-			System.out.println("Ошибка запуска сервера");
+			System.out.println("РћС€РёР±РєР° Р·Р°РїСѓСЃРєР° СЃРµСЂРІРµСЂР°");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -49,7 +49,7 @@ public class ChatServer implements Runnable {
 	
 
 	public static void main(String[] args) {
-		System.out.println("Для запуска сервера введите start. Для отановки сервера введите stop");
+		System.out.println("Р”Р»СЏ Р·Р°РїСѓСЃРєР° СЃРµСЂРІРµСЂР° РІРІРµРґРёС‚Рµ start. Р”Р»СЏ РѕС‚Р°РЅРѕРІРєРё СЃРµСЂРІРµСЂР° РІРІРµРґРёС‚Рµ stop");
 		Scanner in = new Scanner(System.in);
 		boolean isExit=false;
 		ChatServer chat =null;
@@ -60,12 +60,12 @@ public class ChatServer implements Runnable {
 				chat = new ChatServer(SERVER_PORT);
 				  new Thread(chat).start();
 				} else if ("stop".equals(inCommand)){
-				 System.out.println("Сервер остановлен.");
+				 System.out.println("РЎРµСЂРІРµСЂ РѕСЃС‚Р°РЅРѕРІР»РµРЅ.");
 				 in.close();
 				 isExit=true;
 				 System.exit(0);
 			} else {
-				System.out.println("Неверная команда");
+				System.out.println("РќРµРІРµСЂРЅР°СЏ РєРѕРјР°РЅРґР°");
 			}
 
 		}
